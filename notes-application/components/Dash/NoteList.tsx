@@ -58,7 +58,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
         <AiOutlineFilter />
       </button>
       {isFilterOpen && (
-        <ul className='bg-white absolute top-10 right-5 rounded-md drop-shadow divide-y divide-y-1 divide-cyan-500 duration-500 overflow-hidden'>
+        <ul className='z-50 bg-white absolute top-10 right-5 rounded-md drop-shadow divide-y divide-y-1 divide-cyan-500 duration-500 overflow-hidden'>
           <li
             className='cursor-pointer px-4 py-1 hover:bg-slate-300 active:bg-cyan-500'
             onClick={handleUnfinishedTask}
