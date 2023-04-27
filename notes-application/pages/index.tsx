@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <Head>
-        <title key="title">NotesApp</title>
+        <title key="title">NotesApp&apos;s Home</title>
       </Head>
       <main className="min-h-[100vh] w-full flex justify-center items-center p-4">
         <div className="max-h-full w-full xs:4/5 sm:w-2/3 lg:w-1/2 sm:grid grid-cols-2 shadow-md rounded-lg overflow-hidden">
