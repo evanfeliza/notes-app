@@ -51,10 +51,6 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
     setIsFilterOpen(false);
   };
 
-  //  useEffect(()=> {
-  //   handleNoFilter()
-  //  },[])
-
   return (
     <main className="flex flex-col max-h-full h-[500px] max-w-full w-full overflow-y-auto bg-gradient-to-tr from-cyan-600 to-cyan-700 gap-1 px-4">
       <div className="relative flex justify-end items-center gap-2 sticky top-0 bg-cyan-800 px-5 py-2">
