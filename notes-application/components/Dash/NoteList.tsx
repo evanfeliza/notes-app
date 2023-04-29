@@ -51,9 +51,13 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
     setIsFilterOpen(false);
   };
 
+  useEffect(() => {
+    handleNoFilter();
+  }, []);
+
   return (
     <main className="flex flex-col max-h-full h-[500px] max-w-full w-full overflow-y-auto bg-gradient-to-tr from-cyan-600 to-cyan-700 gap-1 px-4">
-      <div className="relative flex justify-end items-center gap-2 sticky top-0 bg-cyan-800 px-5 py-2">
+      <div className="z-50 relative flex justify-end items-center gap-2 sticky top-0 bg-cyan-800 px-5 py-2">
         <p className="font-semibold text-white">Filter</p>
         <button
           className="text-cyan-500 text-xl bg-white drop-shadow-lg rounded-full p-2 hover:bg-cyan-500 hover:text-white duration-700"
@@ -62,7 +66,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
           <AiOutlineFilter />
         </button>
         {isFilterOpen && (
-          <ul className="z-50 bg-white absolute top-10 right-5 rounded-md drop-shadow divide-y divide-y-1 divide-cyan-500 duration-500 overflow-hidden">
+          <ul className="bg-white absolute top-10 right-5 rounded-md drop-shadow divide-y divide-y-1 divide-cyan-500 duration-500 overflow-hidden">
             <li
               className="cursor-pointer px-4 py-1 hover:bg-slate-300 active:bg-cyan-500"
               onClick={handleUnfinishedTask}
