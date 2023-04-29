@@ -46,11 +46,13 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
   };
 
   useEffect(() => {
+    const { refetch: allRefetch } = useNoteList(userID);
     const handleNoFilter = () => {
-      allRefetch();
       setToggleList(true);
       setIsFilterOpen(false);
     };
+    allRefetch();
+
     return handleNoFilter();
   }, [allNotesData]);
 
