@@ -45,15 +45,14 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
     setIsFilterOpen(false);
   };
 
-  const handleNoFilter = () => {
-    allRefetch();
-    setToggleList(true);
-    setIsFilterOpen(false);
-  };
-
   useEffect(() => {
-    handleNoFilter();
-  }, []);
+    const handleNoFilter = () => {
+      allRefetch();
+      setToggleList(true);
+      setIsFilterOpen(false);
+    };
+    return handleNoFilter();
+  }, [allNotesData]);
 
   return (
     <main className="flex flex-col max-h-full h-[500px] max-w-full w-full overflow-y-auto bg-gradient-to-tr from-cyan-600 to-cyan-700 gap-1 px-4">
@@ -81,7 +80,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
             </li>
             <li
               className="cursor-pointer px-4 py-1 hover:bg-slate-300 active:bg-cyan-500"
-              onClick={handleNoFilter}
+              onClick={() => setToggleList(true)}
             >
               No Filters
             </li>
