@@ -8,37 +8,22 @@ import NoteList from "@/components/Dash/NoteList";
 import InputNote from "@/components/Dash/InputNote";
 import { IoIosAddCircle } from "react-icons/io";
 import { Oval } from "react-loader-spinner";
+import { User } from "firebase/auth";
+import { AuthContext } from "@/context/auth/AuthContext";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const user = typeof params?.user === "string" ? params.user : "";
 
   return {
-    props: { user }
+    props: { user },
   };
 };
 
-const UserPage: React.FC = () => {
+const UserPage: React.FC<User> = () => {
   const [isAddTask, setIsAddTask] = useState(false);
   const router = useRouter();
   const { data, fetching, error } = useUser(router.query.user as string);
-
-  if (!data) {
-    return (
-      <div className="flex items-center justify-center h-screen w-screen">
-        <Oval
-          height={50}
-          width={50}
-          color="cyan"
-          secondaryColor="white"
-          wrapperClass=""
-          visible={true}
-          ariaLabel="oval-loading"
-          strokeWidth={7}
-        />
-      </div>
-    );
-  }
-
+  console.log(data);
   return (
     <React.Fragment>
       <ProtectedRoute>
@@ -66,7 +51,7 @@ const UserPage: React.FC = () => {
                 )}
               </div>
 
-              <NoteList user={data.user?.id} />
+              {!fetching && <NoteList user={data.user?.id} />}
             </div>
           </div>
         </main>

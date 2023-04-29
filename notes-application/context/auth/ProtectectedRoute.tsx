@@ -1,29 +1,41 @@
-import React, { useEffect, useContext, ReactNode } from 'react'
-import { AuthContext } from '@/context/auth/AuthContext'
-import { useRouter } from 'next/router'
-import { auth } from '@/firebase'
+import React, { useEffect, useContext, ReactNode } from "react";
+import { AuthContext } from "@/context/auth/AuthContext";
+import { useRouter } from "next/router";
+import { Oval } from "react-loader-spinner";
 
 export interface ProtectRouteProp {
-  children: ReactNode
+  children: ReactNode;
 }
 
-const ProtectedRoute: React.FC<ProtectRouteProp> = ({ children }: ProtectRouteProp) => {
+const ProtectedRoute: React.FC<ProtectRouteProp> = ({
+  children,
+}: ProtectRouteProp) => {
   const { currentUser } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
     if (!currentUser) {
-      router.replace('/');
-    } 
-      
+      router.replace("/");
+    }
   }, [currentUser, router]);
 
   if (!currentUser) {
-    // You can render a loading spinner or a custom message here
+    <div className="flex items-center justify-center h-screen w-screen">
+      <Oval
+        height={50}
+        width={50}
+        color="cyan"
+        secondaryColor="white"
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        strokeWidth={7}
+      />
+    </div>;
     return null;
   }
 
   return <>{children}</>;
-}
+};
 
 export default ProtectedRoute;

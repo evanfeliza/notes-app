@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useNoteList from "../GraphQl/useNoteList";
 import useFilterList from "../GraphQl/useFilterList";
 import SingleNote from "./SingleNote";
@@ -13,22 +13,22 @@ export interface NotesProp {
 
 const NoteList: React.FC<NotesProp> = ({ user }) => {
   const userID = user;
-  const [filter, setFilter] = useState(false);
-  const [toggleList, setToggleList] = useState<boolean>(false);
 
+  const [filter, setFilter] = useState<boolean>(false);
+  const [toggleList, setToggleList] = useState<boolean>(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const {
     data: allNotesData,
     fetching: allNotesFetching,
     error: allNotesError,
-    refetch: allRefetch
-  } = useNoteList(user);
+    refetch: allRefetch,
+  } = useNoteList(userID);
   const {
     data: filteredNotesData,
     fetching: filteredNotesFetching,
     error: filteredNotesError,
-    refetch: filteredRefetch
+    refetch: filteredRefetch,
   } = useFilterList(userID, filter);
 
   const handleUnfinishedTask = () => {
