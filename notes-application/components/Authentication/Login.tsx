@@ -74,23 +74,16 @@ const Login: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (currentUser) {
-      router.push(`/dashboard/${currentUser.uid}`);
-    }
-  }, [currentUser, router]);
-
   const handleRedirect = () => {
     if (currentUser) {
       router.replace(`/dashboard/${currentUser.uid}`);
     }
-    console.log(currentUser);
   };
 
   return (
     <React.Fragment>
       <Head>
-        <title key="title">Notes App-Login</title>
+        <title key="title">Login</title>
       </Head>
 
       <>
@@ -110,13 +103,7 @@ const Login: React.FC = () => {
             name="email"
             errors={errors}
             render={({ message }) => (
-              <p
-                className={`text-red-500 p-1 text-xs ${
-                  message ? "visible" : "invisible"
-                }`}
-              >
-                {message}
-              </p>
+              <p className={`text-red-500 p-1 text-xs `}>{message}</p>
             )}
           />
 
@@ -130,13 +117,7 @@ const Login: React.FC = () => {
             name="password"
             errors={errors}
             render={({ message }) => (
-              <p
-                className={`text-red-500 p-1 text-xs ${
-                  message ? "visible" : "invisible"
-                }`}
-              >
-                {message}
-              </p>
+              <p className={`text-red-500 p-1 text-xs`}>{message}</p>
             )}
           />
           <button
