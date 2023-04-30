@@ -15,7 +15,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
   const userID = user;
 
   const [filter, setFilter] = useState<boolean>(false);
-  const [toggleList, setToggleList] = useState<boolean>(false);
+  const [toggleList, setToggleList] = useState<boolean | null>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const {
@@ -45,16 +45,11 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
     setIsFilterOpen(false);
   };
 
-  useEffect(() => {
-    const { refetch: allRefetch } = useNoteList(userID);
-    const handleNoFilter = () => {
-      setToggleList(true);
-      setIsFilterOpen(false);
-    };
+  const handleNoFilter = () => {
+    setToggleList(true);
+    setIsFilterOpen(false);
     allRefetch();
-
-    return handleNoFilter();
-  }, [allNotesData]);
+  };
 
   return (
     <main className="flex flex-col max-h-full h-[500px] max-w-full w-full overflow-y-auto bg-gradient-to-tr from-cyan-600 to-cyan-700 gap-1 px-4">
@@ -82,7 +77,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
             </li>
             <li
               className="cursor-pointer px-4 py-1 hover:bg-slate-300 active:bg-cyan-500"
-              onClick={() => setToggleList(true)}
+              onClick={handleNoFilter}
             >
               No Filters
             </li>
@@ -90,7 +85,7 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
         )}
       </div>
       <ul className="w-full h-full divide-y divide-y-1">
-        {allNotesFetching || filteredNotesFetching ? (
+        {allNotesFetching || allNotesFetching ? (
           <span className="flex items-center justify-center h-full w-full">
             <Oval
               height={45}
@@ -103,6 +98,8 @@ const NoteList: React.FC<NotesProp> = ({ user }) => {
               strokeWidth={7}
             />
           </span>
+        ) : toggleList === null ? (
+          <SingleNote notes={allNotesData?.todos} />
         ) : toggleList ? (
           <SingleNote notes={allNotesData?.todos} />
         ) : (
