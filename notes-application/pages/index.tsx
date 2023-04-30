@@ -35,7 +35,7 @@ export default function Home() {
             {isRegistered ? <Login /> : <SignUp />}
             {!isRegistered ? (
               <p>
-                Already have an account&quest;
+                Already have an account?
                 <a
                   className="underline hover:text-cyan-400 cursor-pointer"
                   onClick={() =>
@@ -47,7 +47,7 @@ export default function Home() {
               </p>
             ) : (
               <p>
-                Don&apos;t have an Account&quest;
+                Don&apos;t have an Account?
                 <a
                   className="underline hover:text-cyan-400 cursor-pointer"
                   onClick={() =>
