@@ -96,7 +96,7 @@ const SignUp: React.FC = () => {
   return (
     <React.Fragment>
       <Head>
-        <title key="Sign-Up">Notes App-Sign Up</title>
+        <title key="Sign-Up">Sign Up</title>
       </Head>
       <main className="flex flex-col p-1 gap-10 ">
         <h1 className=" uppercase text-4xl font-semibold text-center border-b border-b-1 border-cyan-500 text-cyan-500 p-2 ">
