@@ -24,22 +24,20 @@ const UserPage: React.FC<User> = () => {
   const router = useRouter();
   const { data, fetching, error } = useUser(router.query.user as string);
 
-  useEffect(() => {
-    if (!data) {
-      <span className="flex items-center justify-center h-full w-full">
-        <Oval
-          height={25}
-          width={25}
-          color="cyan"
-          secondaryColor="white"
-          wrapperClass=""
-          visible={true}
-          ariaLabel="oval-loading"
-          strokeWidth={7}
-        />
-      </span>;
-    }
-  }, [data]);
+  if (!data) {
+    <span className="flex items-center justify-center h-full w-full">
+      <Oval
+        height={25}
+        width={25}
+        color="cyan"
+        secondaryColor="white"
+        wrapperClass=""
+        visible={true}
+        ariaLabel="oval-loading"
+        strokeWidth={7}
+      />
+    </span>;
+  }
 
   return (
     <React.Fragment>
