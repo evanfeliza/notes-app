@@ -20,11 +20,8 @@ interface NavProp {
 }
 
 const Navbar: React.FC<NavProp> = ({ data }) => {
-  const { currentUser } = useContext(AuthContext);
   const [isSettings, setIsSettings] = useState(false);
   const [deleteUserResult, deleteUserMutation] = useMutation(DELETE_USER);
-
-  const { fetching } = deleteUserResult;
 
   const handleSignOut = () => {
     signOut(auth); // also sign out from Firebase
