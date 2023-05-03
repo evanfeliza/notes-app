@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useUser from "@/components/GraphQl/useUser";
 import Navbar from "@/components/Dash/Navbar";
 import ProtectedRoute from "@/context/auth/ProtectectedRoute";
@@ -23,7 +23,24 @@ const UserPage: React.FC<User> = () => {
   const [isAddTask, setIsAddTask] = useState(false);
   const router = useRouter();
   const { data, fetching, error } = useUser(router.query.user as string);
-  console.log(data);
+
+  useEffect(() => {
+    if (!data) {
+      <span className="flex items-center justify-center h-full w-full">
+        <Oval
+          height={25}
+          width={25}
+          color="cyan"
+          secondaryColor="white"
+          wrapperClass=""
+          visible={true}
+          ariaLabel="oval-loading"
+          strokeWidth={7}
+        />
+      </span>;
+    }
+  }, [data]);
+
   return (
     <React.Fragment>
       <ProtectedRoute>
