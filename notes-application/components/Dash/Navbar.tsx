@@ -40,7 +40,7 @@ const Navbar: React.FC<NavProp> = ({ data }) => {
     <nav className="bg-cyan-500 w-full">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 p-2">
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
               <h3 className="text-white text-2xl md:text-4xl font-extrabold uppercase ">
                 Notes App
