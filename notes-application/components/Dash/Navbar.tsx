@@ -24,7 +24,7 @@ const Navbar: React.FC<NavProp> = ({ data }) => {
   const [deleteUserResult, deleteUserMutation] = useMutation(DELETE_USER);
 
   const handleSignOut = () => {
-    signOut(auth); // also sign out from Firebase
+    signOut(auth);
   };
 
   const handleDeleteUser = async () => {
